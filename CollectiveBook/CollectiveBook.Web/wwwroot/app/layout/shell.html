@@ -1,0 +1,18 @@
+<section ng-controller="shellController">
+    <div>
+        <div data-ng-include="'app/layout/topnav.html'"></div>
+
+        <div id="mainSection" class="col-sm-12">
+            <div id="sidenav" class="col-sm-2">
+                <div data-ng-include="'app/layout/sidenav.html'"></div>
+            </div>
+            <div ng-class="animation" id="maincontent" class="col-sm-10">
+               
+                <div class="view" ui-view id="ui-view"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <!--<div data-ng-include="'../App/layout/footer.html'"></div>-->
+    </div>
+</section>

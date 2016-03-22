@@ -191,6 +191,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\RepliesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\CBContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -200,7 +201,16 @@
     <Compile Include="Migrations\201603201828140_initial-post-and-reply-added.Designer.cs">
       <DependentUpon>201603201828140_initial-post-and-reply-added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603212256084_people-added.cs" />
+    <Compile Include="Migrations\201603212256084_people-added.Designer.cs">
+      <DependentUpon>201603212256084_people-added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603220646342_post-replies-altered.cs" />
+    <Compile Include="Migrations\201603220646342_post-replies-altered.Designer.cs">
+      <DependentUpon>201603220646342_post-replies-altered.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Reply.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -233,6 +243,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\api-collectivebook - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -266,6 +277,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603201828140_initial-post-and-reply-added.resx">
       <DependentUpon>201603201828140_initial-post-and-reply-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603212256084_people-added.resx">
+      <DependentUpon>201603212256084_people-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603220646342_post-replies-altered.resx">
+      <DependentUpon>201603220646342_post-replies-altered.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

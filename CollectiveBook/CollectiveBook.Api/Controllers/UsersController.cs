@@ -1,69 +1,68 @@
-﻿using CollectiveBook.Api.DAL;
-using CollectiveBook.Api.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using System.Web.Http.Description;
+using CollectiveBook.Api.DAL;
+using CollectiveBook.Api.Models;
+using System.Web.Http.Cors;
 using System.Web.Http.OData;
 
 namespace CollectiveBook.Api.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [RoutePrefix("api/posts")]
-    public class PostsController : ApiController
+    [RoutePrefix("api/users")]
+    public class UsersController : ApiController
     {
         private CBContext db = new CBContext();
 
-
-        // GET: api/Posts
+        // GET: api/Users
         [EnableQuery(MaxExpansionDepth = 2)]
         [Route("")]
         [HttpGet]
-        public IQueryable<Post> GetPosts()
+        public IQueryable<Person> GetUsers()
         {
-            var results = db.Posts
+            var results = db.Users
                 .ToList().AsQueryable();
             return results;
         }
 
-        // GET: api/Posts/5
-        [HttpGet]
+        // GET: api/Users/5
         [Route("{id}")]
-        [ResponseType(typeof(Post))]
-        public IHttpActionResult GetPost(int id)
+        [ResponseType(typeof(Person))]
+        public IHttpActionResult GetPerson(int id)
         {
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            Person person = db.Users.Find(id);
+            if (person == null)
             {
                 return NotFound();
             }
 
-            return Ok(post);
+            return Ok(person);
         }
 
-        // PUT: api/Posts/5
+        // PUT: api/Users/5
         [HttpPatch]
-        [Route("{id}", Name = "PutPost")]
+        [Route("{id}")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPost(int id, [FromBody]Post post)
+        public IHttpActionResult PutPerson(int id, Person person)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != post.Id)
+            if (id != person.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(post).State = EntityState.Modified;
+            db.Entry(person).State = EntityState.Modified;
 
             try
             {
@@ -71,7 +70,7 @@ namespace CollectiveBook.Api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PostExists(id))
+                if (!PersonExists(id))
                 {
                     return NotFound();
                 }
@@ -84,42 +83,40 @@ namespace CollectiveBook.Api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Posts
+        // POST: api/Users
         [HttpPost]
-        [Route("", Name = "CreatePost")]
-        [ResponseType(typeof(Post))]
-        public IHttpActionResult CreatePost([FromBody]Post post)
+        [Route("")]
+        [ResponseType(typeof(Person))]
+        public IHttpActionResult PostPerson(Person person)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Posts.Add(post);
+            db.Users.Add(person);
             db.SaveChanges();
 
-            return CreatedAtRoute("CreatePost", new { id = post.Id }, post);
+            return CreatedAtRoute("DefaultApi", new { id = person.Id }, person);
         }
 
-        // DELETE: api/Posts/5
+        // DELETE: api/Users/5
         [HttpDelete]
         [Route("{id}")]
-        [ResponseType(typeof(Post))]
-        public IHttpActionResult DeletePost(int id)
+        [ResponseType(typeof(Person))]
+        public IHttpActionResult DeletePerson(int id)
         {
-            Post post = db.Posts.Find(id);
-            if (post == null)
+            Person person = db.Users.Find(id);
+            if (person == null)
             {
                 return NotFound();
             }
 
-            db.Posts.Remove(post);
+            db.Users.Remove(person);
             db.SaveChanges();
 
-            return Ok(post);
+            return Ok(person);
         }
-
-
 
         protected override void Dispose(bool disposing)
         {
@@ -130,10 +127,9 @@ namespace CollectiveBook.Api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PostExists(int id)
+        private bool PersonExists(int id)
         {
-            return db.Posts.Count(e => e.Id == id) > 0;
+            return db.Users.Count(e => e.Id == id) > 0;
         }
-
     }
 }

@@ -16,6 +16,7 @@ namespace CollectiveBook.Api.DAL
 
         public DbSet<Post> Posts { get; set; }
         public DbSet<Reply> Replies { get; set; }
+        public DbSet<Person> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -23,6 +24,14 @@ namespace CollectiveBook.Api.DAL
 
             this.Configuration.ProxyCreationEnabled = false;
             this.Configuration.LazyLoadingEnabled = true;
+
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            //modelBuilder.Entity<Post>()
+            //    .HasRequired(s => s.Replies)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(true);
 
         }
 

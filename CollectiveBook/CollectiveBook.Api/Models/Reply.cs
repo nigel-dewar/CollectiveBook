@@ -19,15 +19,15 @@ namespace CollectiveBook.Api.Models
         [Required]
         public string ReplyContent { get; set; }
 
-        [Required]
-        public string CreatedBy { get; set; }
+        public int PersonId { get; set; }
+        public virtual Person Creator { get; set; }
 
         public DateTime Created { get; set; }
 
         //nav properties
         public int PostId { get; set; }
  
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
 
     }
 }

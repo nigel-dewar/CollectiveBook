@@ -1,0 +1,16 @@
+﻿<div class="post">
+    <small>{{post.creator.fullName}}</small>
+    <div>{{post.postContent}}</div>
+
+    <div class="reply">
+
+        <input class="form-control" type="text" ng-model="vm.reply.replyContent" placeholder="Make a reply to this comment" />
+        <input class="btn btn-primary" type="button" value="Share" ng-click="vm.createReply(vm.reply, post.id)" />
+    </div>
+    <div ng-repeat="reply in post.replies">
+
+        <div class="reply">
+            <div>{{reply.replyContent}}</div>
+        </div>
+    </div>
+</div>

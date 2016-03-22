@@ -32,6 +32,7 @@ namespace CollectiveBook.Api.Controllers
         }
 
         // GET: api/Replies/5
+        [HttpGet]
         [Route("{id}")]
         [ResponseType(typeof(Reply))]
         public IHttpActionResult GetReplies(int id)
@@ -84,9 +85,9 @@ namespace CollectiveBook.Api.Controllers
 
         // POST: api/Replies
         [HttpPost]
-        [Route("")]
+        [Route("", Name = "CreateReply")]
         [ResponseType(typeof(Reply))]
-        public IHttpActionResult PostReplies(Reply reply)
+        public IHttpActionResult CreateReply(Reply reply)
         {
             if (!ModelState.IsValid)
             {
@@ -96,7 +97,7 @@ namespace CollectiveBook.Api.Controllers
             db.Replies.Add(reply);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = reply.Id }, reply);
+            return CreatedAtRoute("CreateReply", new { id = reply.Id }, reply);
         }
 
         // DELETE: api/Replies/5
