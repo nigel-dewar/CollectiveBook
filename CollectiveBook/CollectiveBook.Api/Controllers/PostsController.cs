@@ -98,7 +98,9 @@ namespace CollectiveBook.Api.Controllers
             db.Posts.Add(post);
             db.SaveChanges();
 
-            return CreatedAtRoute("CreatePost", new { id = post.Id }, post);
+            var returnpost = db.Posts.Include(p => p.Creator).Where(s => s.Id == post.Id).FirstOrDefault();
+
+            return Ok(returnpost);
         }
 
         // DELETE: api/Posts/5

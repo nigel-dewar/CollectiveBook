@@ -10,18 +10,20 @@
     <div class="row">
         <div class="col-md-12">
             <!--create post-->
-            <div class="post">
-                <input class="form-control" type="text" ng-model="vm.post.postContent" placeholder="Share something with your community" />
+            <form class="form-inline">
+                <img ng-src="{{userPic}}" class="img-circle" width="60" height="60" />
+                <textarea class="form-control" style="min-width: 80%" ng-model="vm.post.postContent" placeholder="Share something with your community"/>
                 <input class="btn btn-primary" type="button" value="Share" ng-click="vm.createPost(vm.post)" />
-            </div>
-            <br />
-            <!--posts repeat section-->
-            <div ng-repeat="(key, post) in vm.posts | orderBy: post.created ">
-                <post-directive post="post" delete-post="deletePost(post)"></post-directive>
-                
-            </div>
+             </form>
+             
+                <br />
+                <!--posts repeat section-->
+                <div ng-repeat="(key, post) in vm.posts | orderBy: post.created ">
+                    <post-directive post="post" delete-post="deletePost(post)"></post-directive>
 
-        </div>
+                </div>
+
+</div>
     </div>
 
 </section>

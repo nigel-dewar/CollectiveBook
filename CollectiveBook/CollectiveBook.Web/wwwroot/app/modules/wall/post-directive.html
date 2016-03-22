@@ -1,22 +1,67 @@
 ﻿<div class="post">
-    <div class="col-sm-2">
-        <img ng-src="userPic(post.creator.profilePic)" alt="" />
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-1">
+                <img ng-src="{{userPic()}}" class="img-circle" width="60" height="60" />
+            </div>
+            <div class="col-sm-10">
+                <span>
+
+                    <small>{{post.creator.fullName}}</small>
+                    {{post.postContent}}
+
+                </span>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="close pull-right" ng-click="deletePost(post)">&times;</button>
+            </div>
+        </div>
     </div>
-    <div><small>{{post.creator.fullName}}</small></div>
-    <span>{{post.postContent}} <button type="button" class="close pull-right" ng-click="deletePost(post)">&times;</button></span>
-    <br />
-    <br />
 
-    <div class="reply">
-        <span><input class="form-control" type="text" ng-model="reply.replyContent" placeholder="Make a reply to this comment" /> <input class="btn btn-primary" type="button" value=" Share" ng-click="createReply(reply)" /></span>
+    <!--replies section-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-1">
 
+            </div>
+            <div class="col-sm-10">
+                <form class="form-inline">
+                    <img ng-src="{{currentUserPic}}" class="img-circle" width="60" height="60" />
+                    <textarea class="form-control" style="min-width: 80%" ng-model="reply.replyContent" placeholder="Make a reply to this comment" />
+                    <input class="btn btn-primary" type="button" value="Share" ng-click="createReply(reply)" />
+                </form>
+                <br />
+                <br />
+                <div class="row">
+                    <div ng-repeat="reply in post.replies">
+                        <div class="col-sm-1">
+                            <img ng-src="{{userPic()}}" class="img-circle" width="60" height="60" />
+                        </div>
+                        <div class="col-sm-10">
+                            <span>
+
+                                <small>{{reply.creator.fullName}}</small>
+                                {{reply.replyContent}}
+
+                            </span>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="close pull-right" ng-click="deleteReply(reply)">&times;</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            
+        </div>
     </div>
-    <div ng-repeat="reply in post.replies">
 
-        <div class="reply">
-            <span>{{reply.replyContent}} <button type="button" class="close pull-right" ng-click="deleteReply(reply)">&times;</button></span>
-
+    <div class="row">
+        <div class="col-sm-12">
+            
 
         </div>
     </div>
+
 </div>

@@ -39,11 +39,12 @@
                             $scope.post.replies.splice(index, 1);                      
                         });
                     }
-
-                    $scope.userPic = function (pic) {
-
+                    //+ $scope.post.creator.profilePic;
+                    $scope.userPic = function () {
+                        
+                        return "images/" + $scope.post.creator.profilePic;
                     }
-
+                    //$scope.userPic = "images/"+ $scope.post.creator.profilePic;
                 }
             }
         
