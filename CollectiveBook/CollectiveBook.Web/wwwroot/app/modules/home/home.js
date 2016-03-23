@@ -15,13 +15,11 @@
 
         vm.createPost = function (post) {
             post.personId = $rootScope.user.id;
-
             apiDataService.createPost(post).then(function (result) {
                 vm.posts.unshift(result);
                 vm.post = {};
-            });
-            
-        };
+            });  
+        }
 
         $scope.deletePost = function (post) {
             console.log('the delete function ran');
@@ -45,14 +43,10 @@
             vm.posts = dataArray[1];
             $scope.userPic = "images/" + $rootScope.user.profilePic;
 
-            // get users wall
-            apiDataService.getUserWall($rootScope.user.id).then(function (result) {
-                vm.userposts = result;
-                console.log(JSON.stringify(result));
-            });
-
-
-
+            // get users individual wall -- not using (would do if turning into proper app)
+            //apiDataService.getUserWall($rootScope.user.id).then(function (result) {
+            //    vm.userposts = result; 
+            //});
         }
 
         function getAllDataError(reason) {
@@ -62,6 +56,8 @@
         function allCompleted(notification) {
             vm.isBusy = false;
         }
+
+        // Use if getting users info from Azure AD, and populating user in DB dynamically - not using -- //
 
         //var upn = $rootScope.userInfo.profile.upn;
         //// get user info - if none found then create in db - apply user to $rootScope

@@ -23,10 +23,10 @@ function data($http, $q, constantService) {
         getUser: getUser,
         createUser: createUser,     
         getAllStaff: getAllStaff,
-        getStaffMember: getStaffMember,
-        getInstructorByUPN: getInstructorByUPN
+        getStaffMember: getStaffMember
     };
 
+    // use if wanting to get all posts from a specific user
     function getUserWall(id) {
 
         var dfd = $q.defer();
@@ -42,8 +42,9 @@ function data($http, $q, constantService) {
           });
 
         return dfd.promise;
-    } // create
+    } 
 
+    // post functions
     function getAllPosts() {
 
         var dfd = $q.defer();
@@ -58,7 +59,7 @@ function data($http, $q, constantService) {
           });
 
         return dfd.promise;
-    } // create
+    } 
 
     function createPost(item) {
 
@@ -90,6 +91,7 @@ function data($http, $q, constantService) {
         return dfd.promise;
     }
 
+    // reply functions
     function createReply(item) {
 
         var dfd = $q.defer();
@@ -119,8 +121,8 @@ function data($http, $q, constantService) {
 
         return dfd.promise;
     }
-
-    // create user
+ 
+    // gets user from DB
     function getUser(upn) {
   
         var dfd = $q.defer();
@@ -136,9 +138,9 @@ function data($http, $q, constantService) {
           });
 
         return dfd.promise;
-    } // create
+    } 
 
-    // get user
+    // use if wanting to create a user in DB 
     function createUser(user) {
 
         var dfd = $q.defer();
@@ -153,9 +155,10 @@ function data($http, $q, constantService) {
           });
 
         return dfd.promise;
-    } // create
-            
-     function getAllStaff(term) {
+    } 
+    
+    // use if wanting to perform searches accross all staff in Azure AD
+    function getAllStaff(term) {
 
          var term = encodeURI(term);
 
@@ -175,8 +178,9 @@ function data($http, $q, constantService) {
          return dfd.promise;
 
      }
-
-     function getStaffMember(name) {
+    
+    // user if wanting to get all info about individual user from Azure AD
+    function getStaffMember(name) {
 
          //var term = encodeURI(name);
 
@@ -196,26 +200,6 @@ function data($http, $q, constantService) {
          return dfd.promise;
 
      }
-
-     function getInstructorByUPN(upn) {
-
-         var dfd = $q.defer();
-
-         var query = "?$filter=UPN eq '" + upn + "'&$select=FullName, FirstName, LastName, UPN, EitStaff, Id, Bio, Email, PhoneNumber&$expand=Workshops";
-         var endpoint = appUrl + "api/users" + query;
-
-         $http.get(endpoint)
-
-           .then(function (response) {
-
-               dfd.resolve(response);
-           }, function (error) {
-               dfd.reject("failed to read task");
-           });
-
-         return dfd.promise;
-     }
-
 
     }
 

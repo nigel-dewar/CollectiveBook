@@ -1,31 +1,35 @@
 ﻿<section>
     <!--loading-->
     <div class="row">
-        <div class="col-md-12">
-            <div ng-show="vm.isBusy" class="text-center"><i class="fa fa-spinner fa-spin"></i> Loading...</div>
+        <div class="col-xs-12">
+            <div ng-show="vm.isBusy" class="text-center"><i class="fa fa-spinner fa-spin"></i> Loading... May take a while because this is a free Azure site</div>
         </div>
     </div>
 
     <!--page content-->
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row" ng-show="!vm.isBusy">
+        <div class="col-xs-12">
             <!--create post-->
-            <form class="form-inline">
-                <img ng-src="{{userPic}}" class="img-circle" width="60" height="60" />
-                <textarea class="form-control" style="min-width: 80%" ng-model="vm.post.postContent" placeholder="Share something with your community"/>
-                <input class="btn btn-primary" type="button" value="Share" ng-click="vm.createPost(vm.post)" />
-             </form>
-             
-                <br />
-                <!--posts repeat section-->
-        
-                <div ng-repeat="(key, post) in vm.posts | orderBy: '-created'">
-                    <post-directive post="post" delete-post="deletePost(post)"></post-directive>
-
+            <form class="form-inline" novalidate>
+                <div class="col-xs-3 col-sm-2 col-md-1">
+                    <img ng-src="{{userPic}}" class="img-circle" width="60" height="60" />
                 </div>
-          
-
+                <div class="col-xs-6 col-sm-8 col-md-10">
+                    <textarea class="form-control" style="width:100%" ng-model="vm.post.postContent" placeholder="Share something with your community" />
+                </div>
+                <div class="col-xs-3 col-sm-2 col-md-1 vcenter">
+                    <input class="btn btn-primary" type="button" value="Share" ng-click="vm.createPost(vm.post)" />
+                </div>
+            </form>
         </div>
     </div>
+    <hr />
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-repeat="(key, post) in vm.posts | orderBy: '-created'">
+                <post-directive post="post" delete-post="deletePost(post)"></post-directive>
 
+            </div>
+        </div>
+    </div>
 </section>

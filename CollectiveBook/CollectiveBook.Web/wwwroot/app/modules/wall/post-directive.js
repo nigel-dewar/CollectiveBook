@@ -11,16 +11,13 @@
                 scope: {
                     post: '=',
                     deletePost: '&'
-                    //userInfo: "@"
                 },
                 controller: function ($scope, apiDataService, $q, $rootScope) {
-
 
                     $scope.myreply = {};
 
                     // create reply
                     $scope.createReply = function (reply) {
-
                         var item = {};
                         item.replyContent = reply.replyContent;
                         item.personId = $rootScope.user.id;
@@ -30,7 +27,7 @@
                             $scope.post.replies.push(result);
                             $scope.myreply = {};
                         });
-                    };
+                    }
 
                     // delete reply
                     $scope.deleteReply = function (reply) {
@@ -48,15 +45,10 @@
                         return "images/" + pic;
                     }
                     
-            
-
                     $scope.currentUserPic = function () {
                         return "images/" + $rootScope.user.profilePic;
                     }
-
                 }
-            }
-        
+            } 
         });
-
 })();

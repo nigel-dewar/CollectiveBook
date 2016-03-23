@@ -7,10 +7,7 @@
         'ngAnimate',
         // 3rd Party Modules
         'AdalAngular',
-        'ui.bootstrap',
-        'ui.router',
-        'ui.select',
-        'ngCkeditor',
+        'ui.router'
     ]).constant("constantService", {
         //set to false when go live
         testMode: false,

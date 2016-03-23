@@ -8,11 +8,7 @@
 
 <!-- VENDOR CSS -->
     <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <!--<link href="lib/fullcalendar/dist/fullcalendar.css" rel="stylesheet" />-->
-    <link href="lib/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
-    <link href="lib/angular-ui-select/dist/select.css" rel="stylesheet" />
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!--<link href="lib/select2/select2.css" rel="stylesheet" />-->
 
 <!-- App CSS -->
     <link href="css/stylesheet.css" rel="stylesheet" />
@@ -29,11 +25,6 @@
     <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="lib/angular-animate/angular-animate.min.js"></script>
-    <script src="lib/angular-bootstrap/ui-bootstrap.js"></script>
-    <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="lib/ckeditor/ckeditor.js"></script>
-    <script src="lib/ng-ckeditor/ng-ckeditor.min.js"></script>
-
 
 <!-- App Setup files-->
     <script src="lib/adal-angular/lib/adal.js"></script>
@@ -41,14 +32,6 @@
 
     <script src="app.js"></script>
     <script src="app/services/api-dataservice.js"></script>
-
-    <!-- ui select modern version-->
-    <script src="lib/angular-ui-select/dist/select.min.js"></script>
-
-<!--Modals-->
-    <!--<script src="app/shared/confirm-modal.controller.js"></script>
-    <script src="app/services/dialogs.service.js"></script>-->
-
 
 <!-- App Module files -->
 
@@ -60,26 +43,16 @@
     
     <!--wall-->
     <script src="app/modules/wall/post-directive.js"></script>
-    <script src="app/modules/wall/reply-directive.js"></script>
-
 
 </head>
-<body class="row" style="padding-left:50px; padding-right:50px;">
-
-    <!--<div data-ng-include="'app/layout/shell.html'"></div>-->
-    <div class="row col-sm-12" ng-controller="shellController"> 
-            <div data-ng-include="'app/layout/topnav.html'"></div>
-          
-            <div id="mainSection" class="col-sm-12">
-                <div id="sidenav" class="col-sm-2">
-                    <div data-ng-include="'app/layout/sidenav.html'"></div>
-                </div>
-                <div ng-class="animation" id="maincontent" class="col-sm-10">
-
-                    <div class="view" ui-view id="ui-view"></div>
+<body class="row">
+    <div class="container"  ng-controller="shellController"> 
+        <div data-ng-include="'app/layout/topnav.html'"></div>        
+            <div id="mainSection">
+                <div ng-class="animation" id="maincontent">
+                    <div  ui-view id="ui-view"></div>
                 </div>
             </div>
-    </div>
-    
+    </div>   
 </body>
 </html>
