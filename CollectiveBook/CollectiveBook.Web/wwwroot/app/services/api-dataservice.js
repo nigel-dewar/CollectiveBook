@@ -31,7 +31,7 @@ function data($http, $q, constantService) {
 
         var dfd = $q.defer();
 
-        var query = "?$filter=PersonId eq " + id + "&$expand=Replies,Creator&$orderby=Created desc";
+        var query = "?$filter=PersonId eq " + id + "&$orderby=Created desc";
         var endpoint = appUrl + "api/posts/" + query;
 
         $http.get(endpoint)
@@ -47,15 +47,14 @@ function data($http, $q, constantService) {
     function getAllPosts() {
 
         var dfd = $q.defer();
-
-        var query = "?$filter=PageName eq '" + page + "'";
+        var query = "?$orderby=Created asc";
         var endpoint = appUrl + "api/posts/";
 
         $http.get(endpoint)
           .then(function (response) {
-              dfd.resolve(response);
+              dfd.resolve(response.data);
           }, function (error) {
-              dfd.reject("failed to users posts");
+              dfd.reject("failed to get all posts");
           });
 
         return dfd.promise;

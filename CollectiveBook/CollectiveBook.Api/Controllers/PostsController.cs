@@ -22,12 +22,13 @@ namespace CollectiveBook.Api.Controllers
 
 
         // GET: api/Posts
-        [EnableQuery(MaxExpansionDepth = 2)]
+        [EnableQuery(MaxExpansionDepth = 4)]
         [Route("")]
         [HttpGet]
         public IQueryable<Post> GetPosts()
         {
             var results = db.Posts
+                .Include("Replies")
                 .ToList().AsQueryable();
             return results;
         }

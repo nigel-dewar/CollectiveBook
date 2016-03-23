@@ -32,22 +32,27 @@
         }
 
         var upn = $rootScope.userInfo.profile.upn;
-        var userPromise = apiDataService.getUser(upn); 
+        var userPromise = apiDataService.getUser(upn);
+        var postsPromise = apiDataService.getAllPosts();
 
-        $q.all([userPromise])
+        $q.all([userPromise, postsPromise])
             .then(getAllDataSuccess)
             .catch(getAllDataError)
             .finally(allCompleted);
 
         function getAllDataSuccess(dataArray) {
             $rootScope.user = dataArray[0].data[0];
+            vm.posts = dataArray[1];
             $scope.userPic = "images/" + $rootScope.user.profilePic;
 
             // get users wall
             apiDataService.getUserWall($rootScope.user.id).then(function (result) {
-                vm.posts = result;
+                vm.userposts = result;
                 console.log(JSON.stringify(result));
-            });        
+            });
+
+
+
         }
 
         function getAllDataError(reason) {

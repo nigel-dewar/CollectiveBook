@@ -18,12 +18,14 @@
              
                 <br />
                 <!--posts repeat section-->
-                <div ng-repeat="(key, post) in vm.posts | orderBy: post.created ">
+        
+                <div ng-repeat="(key, post) in vm.posts | orderBy: '-created'">
                     <post-directive post="post" delete-post="deletePost(post)"></post-directive>
 
                 </div>
+          
 
-</div>
+        </div>
     </div>
 
 </section>

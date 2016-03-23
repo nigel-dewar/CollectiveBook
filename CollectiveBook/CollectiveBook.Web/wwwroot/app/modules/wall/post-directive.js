@@ -16,7 +16,7 @@
                 controller: function ($scope, apiDataService, $q, $rootScope) {
 
 
-                    $scope.reply = {};
+                    $scope.myreply = {};
 
                     // create reply
                     $scope.createReply = function (reply) {
@@ -28,7 +28,7 @@
 
                         apiDataService.createReply(item).then(function (result) {
                             $scope.post.replies.push(result);
-                            $scope.reply = {};
+                            $scope.myreply = {};
                         });
                     };
 
@@ -39,12 +39,21 @@
                             $scope.post.replies.splice(index, 1);                      
                         });
                     }
-                    //+ $scope.post.creator.profilePic;
-                    $scope.userPic = function () {
-                        
+              
+                    $scope.userPic = function () {                     
                         return "images/" + $scope.post.creator.profilePic;
                     }
-                    //$scope.userPic = "images/"+ $scope.post.creator.profilePic;
+
+                    $scope.replyPic = function (pic) {
+                        return "images/" + pic;
+                    }
+                    
+            
+
+                    $scope.currentUserPic = function () {
+                        return "images/" + $rootScope.user.profilePic;
+                    }
+
                 }
             }
         

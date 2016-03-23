@@ -15,11 +15,11 @@
         //set to false when go live
         testMode: false,
 
-        frontEndUrl: "http://localhost:5000/",
-        // frontEndUrl: "http://collectivebook.azurewebsites.net/",
+        // frontEndUrl: "http://localhost:5000/",
+         frontEndUrl: "http://collectivebook.azurewebsites.net/",
 
-        appUrl: "https://localhost:44302/"
-        //  appUrl: "https://api-collectivebook.azurewebsites.net/"
+        //appUrl: "https://localhost:44302/"
+          appUrl: "https://api-collectivebook.azurewebsites.net/"
     }).config(config)
     //.run(['$route', 'uiSelect2Config', function ($route, uiSelect2Config) {
         .run(['$state', function ($state) {

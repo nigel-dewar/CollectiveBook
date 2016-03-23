@@ -21,7 +21,7 @@ namespace CollectiveBook.Api.Controllers
         private CBContext db = new CBContext();
 
         // GET: api/Replies
-        [EnableQuery(MaxExpansionDepth = 2)]
+        [EnableQuery(MaxExpansionDepth = 4)]
         [Route("")]
         [HttpGet]
         public IQueryable<Reply> GetReplies()
@@ -97,7 +97,13 @@ namespace CollectiveBook.Api.Controllers
             db.Replies.Add(reply);
             db.SaveChanges();
 
-            return CreatedAtRoute("CreateReply", new { id = reply.Id }, reply);
+            
+
+            var returnreply = db.Replies.Include(p => p.Creator).Where(s => s.Id == reply.Id).FirstOrDefault();
+
+            return CreatedAtRoute("CreateReply", new { id = reply.Id }, returnreply);
+           
+
         }
 
         // DELETE: api/Replies/5
