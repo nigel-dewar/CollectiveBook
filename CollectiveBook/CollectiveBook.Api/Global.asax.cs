@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+
 namespace CollectiveBook.Api
 {
     public class WebApiApplication : System.Web.HttpApplication
@@ -18,6 +19,7 @@ namespace CollectiveBook.Api
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            CronJobs.JobScheduler.Start();
         }
     }
 }

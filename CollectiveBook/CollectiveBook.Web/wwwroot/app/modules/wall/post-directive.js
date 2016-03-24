@@ -46,7 +46,7 @@
                     }
                     
                     $scope.currentUserPic = function () {
-                        return "images/" + $rootScope.user.profilePic;
+                        return $rootScope.user.profilePic;
                     }
                 }
             } 

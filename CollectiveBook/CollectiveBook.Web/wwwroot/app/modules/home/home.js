@@ -41,7 +41,7 @@
         function getAllDataSuccess(dataArray) {
             $rootScope.user = dataArray[0].data[0];
             vm.posts = dataArray[1];
-            $scope.userPic = "images/" + $rootScope.user.profilePic;
+            $scope.userPic = $rootScope.user.profilePic;
 
             // get users individual wall -- not using (would do if turning into proper app)
             //apiDataService.getUserWall($rootScope.user.id).then(function (result) {

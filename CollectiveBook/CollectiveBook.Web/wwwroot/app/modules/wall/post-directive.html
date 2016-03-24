@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-12" style="padding-top:5px;">   
             <div class="col-xs-3 col-sm-2 col-md-1">
-                <img ng-src="{{userPic()}}" class="img-circle" width="60" height="60" />
+                <img ng-src="{{post.creator.profilePic}}" class="img-circle" width="60" height="60" />
             </div>
             <div class="col-xs-6 col-sm-8 col-md-10">
                 <small> <span>{{post.creator.fullName}} @</span><span> {{post.created | date : "h:mma"}}</span></small>
@@ -26,7 +26,7 @@
 
                         <div class="clearfix reply" style="width:100%">
                             <div class="pic">
-                                <img ng-src="{{replyPic(reply.creator.profilePic)}}" class="img-circle" width="60" height="60" />
+                                <img ng-src="{{reply.creator.profilePic}}" class="img-circle" width="60" height="60" />
                             </div>
                             <div class="content">
                                 <small> <span>{{reply.creator.fullName}} @</span><span> {{reply.created | date : "h:mma"}}</span></small>
